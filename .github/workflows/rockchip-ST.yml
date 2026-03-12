@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: rockchip-ST
+name: Rockchip-ST
 
 on:
   repository_dispatch:
