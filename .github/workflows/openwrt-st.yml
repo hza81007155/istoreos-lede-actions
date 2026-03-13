@@ -15,9 +15,9 @@ name: Openwrt-ST
 on:
   repository_dispatch:
   workflow_dispatch:
-on:
+
   schedule:
-   - cron: '51 9 13 * *'
+   - cron: '55 1 13 * *'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
