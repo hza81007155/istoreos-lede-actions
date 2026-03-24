@@ -30,6 +30,10 @@ env:
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
+permissions:
+  contents: write
+  pull-requests: read  
+  
 jobs:
   build:
     runs-on: ubuntu-22.04
