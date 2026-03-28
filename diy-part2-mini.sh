@@ -50,13 +50,13 @@ function git_sparse_clone() {
 }
 
 # 添加插件
-git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-adguardhome.git
-git_sparse_clone openwrt-24.10 https://github.com/openwrt/packages utils/coremark
+#git clone --depth=1 --single-branch https://github.com/sirpdboy/luci-app-adguardhome.git
+#git_sparse_clone openwrt-24.10 https://github.com/openwrt/packages utils/coremark
 #git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
-git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
+#git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
 #git clone --depth=1 -b master https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan
-git clone https://github.com/miaoermua/luci-app-leigod-acc package/luci-app-leigod-acc
+#git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan
+#git clone https://github.com/miaoermua/luci-app-leigod-acc package/luci-app-leigod-acc
 
 # passwall
 rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
