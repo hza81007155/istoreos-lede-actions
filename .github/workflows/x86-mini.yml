@@ -25,7 +25,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config-mini
   DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
+  DIY_P2_SH: diy-part2-mini.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -132,6 +132,7 @@ jobs:
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+        echo "🔥 LEDE Mini for x86_64" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v2
