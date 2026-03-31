@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 # 选择6.6内核
-#sed -i 's/6.12/6.6/g' target/linux/x86/Makefile
+sed -i 's/6.12/6.6/g' target/linux/x86/Makefile
 # 设置默认ip
 sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/luci/bin/config_generate
 sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/files/bin/config_generate
