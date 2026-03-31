@@ -28,6 +28,12 @@ rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/lucky
 rm -rf feeds/packages/utils/coremark
 
+# 删除 ksmbd 内核模块
+rm -rf package/kernel/ksmbd/
+
+# 删除 ksmbd-tools 工具
+rm -rf package/feeds/packages/ksmbd-tools/
+
 # 设置默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci-light/Makefile
 
