@@ -28,6 +28,9 @@ rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/lucky
 rm -rf feeds/packages/utils/coremark
 
+# luci-app-openclaw
+git clone https://github.com/10000ge10000/luci-app-openclaw.git package/luci-app-openclaw
+
 # 设置默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci-light/Makefile
 
