@@ -59,7 +59,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@main
 
     - name: Initialization environment
       env:
@@ -143,31 +143,27 @@ jobs:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-
-    - name: 生成发布标签
+    - name: Generate release tag
       id: tag
-      if: ${{ env.UPLOAD_RELEASE == 'true' && !cancelled() && steps.organize.outputs.status == 'success' }}
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        : > "$GITHUB_OUTPUT"  # 清空旧输出，避免重复触发旧变量
-        release_tag=$(date +"%Y.%m.%d-%H.%M")
-        release_date=$(date +"%Y-%m-%d %H:%M")
-        echo "release_tag=$release_tag" >> "$GITHUB_OUTPUT"
-        echo "release_date=$release_date" >> "$GITHUB_OUTPUT"
-        echo "status=success" >> "$GITHUB_OUTPUT"
-        # 🔽 添加发布页说明
-        echo "🎯 固件名称: X86-Luci18 标准版" > release.txt
-        echo "📅 编译时间: $release_date" >> release.txt
-        echo "💻 源仓库: $REPO_URL ($REPO_BRANCH)" >> release.txt
-        echo "⚙️ 构建配置: $CONFIG_FILE" >> release.txt
-        echo "----------------------------------------" >> release.txt
-        echo "🧱 编译日志请查看 Actions 构建详情" >> release.txt
-    - name: 上传固件至Release
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        touch release.txt
+        [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+        echo "🔥 LEDE ST for rockchip" >> release.txt
+        echo "status=success" >> $GITHUB_OUTPUT
+    - name: Upload firmware to release
       uses: softprops/action-gh-release@v2
-      if: steps.tag.outputs.status == 'success' && !cancelled() && steps.organize.outputs.status == 'success'
+      if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       with:
-        name: X86-Luci18-ST
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        retain_days: 0
+        keep_minimum_runs: 2
