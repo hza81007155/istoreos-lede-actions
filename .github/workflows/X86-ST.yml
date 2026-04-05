@@ -1,24 +1,3 @@
-Skip to content
-hza81007155
-istoreos-lede-actions
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Important update
-On April 24 we'll start using GitHub Copilot interaction data for AI model training unless you opt out. Review this update and manage your preferences in your GitHub account settings.
-ARM-ST
-ARM-ST #1
-All jobs
-Run details
-Workflow file for this run
-.github/workflows/ARM-ST.yml at e1aeaf0
 #
 # https://github.com/P3TERX/Actions-OpenWrt
 #
@@ -31,7 +10,7 @@ Workflow file for this run
 # See /LICENSE for more information.
 #
 
-name: ARM-ST
+name: X86-ST
 
 on:
   repository_dispatch:
@@ -41,7 +20,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: rockchip-st
+  CONFIG_FILE: config-st
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -55,7 +34,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
@@ -74,18 +53,21 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+
     - name: Clone source code
       working-directory: /workdir
       run: |
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
+
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -99,6 +81,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+
     - name: Download package
       id: package
       run: |
@@ -107,6 +90,7 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
     - name: Compile the firmware
       id: compile
       run: |
@@ -117,6 +101,7 @@ jobs:
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
     - name: Check space usage
       if: (!cancelled())
       run: df -hT
@@ -136,6 +121,7 @@ jobs:
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
+
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
@@ -150,10 +136,11 @@ jobs:
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
-        echo "🔥 LEDE ST for rockchip" >> release.txt
+        echo "🔥 LEDE X86 ST for x86" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v2.1.0
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
