@@ -1,25 +1,4 @@
-Skip to content
-hza81007155
-istoreos-lede-actions
-Repository navigation
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security and quality
-Insights
-Settings
-Important update
-On April 24 we'll start using GitHub Copilot interaction data for AI model training unless you opt out. Review this update and manage your preferences in your GitHub account settings.
-X86-Mini
-X86-Mini #11
-All jobs
-Run details
-Workflow file for this run
-.github/workflows/x86-Mini.yml at 1cfbecf
-#
+
 # https://github.com/P3TERX/Actions-OpenWrt
 #
 # File: .github/workflows/openwrt-bulder.yml
