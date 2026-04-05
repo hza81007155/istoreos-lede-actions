@@ -74,7 +74,7 @@ jobs:
         sudo rm -rf /etc/apt/sources.list.d* /usr/local/lib/android* /etc/docker* /etc/firefox* /etc/mysql* /etc/php* /opt/google* /usr/share/dotnet* /usr/share/google* /usr/share/moby* /usr/share/mysql* /usr/share/php*
         sudo -E apt-get -qq update
         sudo -E apt-get -y purge azure* docker* dotnet* firefox* ghc* google* llvm* mongodb* mysql* php* powershell* snap* gfortran* microsoft-edge-stable
-        sudo -E apt-get -qq install $(curl -fsSL raw.githubusercontent.com/Lai-xi/Actions-Lede_x86/main/run)
+        sudo -E apt-get -qq install $(curl -fsSL raw.githubusercontent.com/hza81007155/istoreos-lede-actions/main/run)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
