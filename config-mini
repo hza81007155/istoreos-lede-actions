@@ -16,7 +16,6 @@ CONFIG_PACKAGE_blkid=y
 CONFIG_PACKAGE_btrfs-progs=y
 CONFIG_PACKAGE_chinadns-ng=y
 CONFIG_PACKAGE_coreutils-timeout=y
-CONFIG_PACKAGE_ddnsto=y
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
 CONFIG_PACKAGE_drill=y
 CONFIG_PACKAGE_glib2=y
