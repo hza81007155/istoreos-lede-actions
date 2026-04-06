@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: X86-ST
+name: X86-SP
 
 on:
   repository_dispatch:
