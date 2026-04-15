@@ -1,12 +1,11 @@
 *自用6年的机场与vps
 
-
-
 1.IEPL 专线：https://new.bnaffloop.com/#/register?code=GqVAUNgM
 
 2.三网优化VPS:https://www.hncloud.com/activity/activity_2026spring.html?k=55NAPP
 
 #    IP:192.168.10.12
+
 # Actions-OpenWrt
 
 [![LICENSE](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square&label=LICENSE)](https://github.com/P3TERX/Actions-OpenWrt/blob/master/LICENSE)
