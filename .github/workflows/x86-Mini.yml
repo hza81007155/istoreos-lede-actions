@@ -136,6 +136,7 @@ jobs:
         echo "release_date=$release_date" >> "$GITHUB_OUTPUT"
         echo "status=success" >> "$GITHUB_OUTPUT"
         # 🔽 添加发布页说明
+        echo "⚙️IP:192.168.10.12" > release.txt
         echo "🎯 固件名称: X86-Luci18 Mini版" > release.txt
         echo "📅 编译时间: $release_date" >> release.txt
         echo "💻 源仓库: $REPO_URL ($REPO_BRANCH)" >> release.txt
