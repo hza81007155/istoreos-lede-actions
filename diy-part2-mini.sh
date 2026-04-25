@@ -69,8 +69,8 @@ git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-
 git clone --depth=1 -b main https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
 
 # 18.06 Argone theme
-git clone --depth=1 -b main https://github.com/hza81007155/luci-theme-argone package/luci-theme-argone
-git clone --depth=1 -b main https://github.com/hza81007155/luci-app-argone-config package/luci-app-argone-config
+git clone https://github.com/kenzok78/luci-theme-argone
+git clone https://github.com/kenzok78/luci-app-argone-config
 
 # istore
 git clone --depth=1 -b main https://github.com/linkease/nas-packages-luci package/nas-packages-luci
