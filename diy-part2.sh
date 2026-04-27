@@ -66,10 +66,10 @@ rm -rf feeds/luci/applications/luci-app-passwall
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-luci
 git clone --depth=1 -b main https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
 
-# 18.06 Argone theme
+# Argone theme
 
-git clone -b 18.06 https://github.com/hza81007155/luci-theme-argon.git luci-theme-argon
-git clone -b 18.06 https://github.com/hza81007155/luci-app-argon-config.git luci-app-argon-config
+git clone https://github.com/hza81007155/luci-theme-argon.git
+git clone https://github.com/hza81007155/luci-app-argon-config.git
 
 # istore
 git clone --depth=1 -b main https://github.com/linkease/nas-packages-luci package/nas-packages-luci
