@@ -79,3 +79,11 @@ git clone --depth=1 -b main https://github.com/linkease/istore package/istore
 
 # openclash
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/luci-app-openclash
+
+make clean
+rm -rf build_dir/target-*
+rm -rf build_dir/host-*
+rm -rf tmp
+./scripts/feeds clean
+./scripts/feeds update -a
+./scripts/feeds install -a
