@@ -30,6 +30,13 @@ rm -rf feeds/packages/utils/coremark
 rm -rf feeds/packages/net/ksmbd
 ./scripts/feeds uninstall ksmbd
 ./scripts/feeds install ksmbd
+make clean
+rm -rf build_dir/target-*
+rm -rf build_dir/host-*
+rm -rf tmp
+./scripts/feeds clean
+./scripts/feeds update -a
+./scripts/feeds install -a
 
 # 设置默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile
@@ -68,9 +75,9 @@ rm -rf feeds/luci/applications/luci-app-passwall
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-luci
 git clone --depth=1 -b main https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
 
-#  Argone theme
-git clone https://github.com/jerrykuku/luci-theme-argon.git luci-theme-argon
-git clone https://github.com/jerrykuku/luci-app-argon-config.git luci-app-argon-config
+# Argone theme
+git clone --depth=1 -b master https://github.com/hza81007155/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 -b master https://github.com/hza81007155/luci-app-argon-config.git package/luci-app-argon-config
 
 # istore
 git clone --depth=1 -b main https://github.com/linkease/nas-packages-luci package/nas-packages-luci
@@ -79,11 +86,3 @@ git clone --depth=1 -b main https://github.com/linkease/istore package/istore
 
 # openclash
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/luci-app-openclash
-
-#make clean
-#rm -rf build_dir/target-*
-#rm -rf build_dir/host-*
-#rm -rf tmp
-#./scripts/feeds clean
-#./scripts/feeds update -a
-#./scripts/feeds install -a
