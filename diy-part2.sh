@@ -29,7 +29,7 @@ rm -rf feeds/packages/net/lucky
 rm -rf feeds/packages/utils/coremark
 
 # 设置默认主题
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-light/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci-light/Makefile
 
 # x86 型号只显示 CPU 型号
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
@@ -67,8 +67,8 @@ git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-
 git clone --depth=1 -b main https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
 
 # Argone theme
-git clone --depth=1 -b master https://github.com/hza81007155/luci-theme-argon package/luci-theme-argon
-git clone --depth=1 -b master https://github.com/hza81007155/luci-app-argon-config.git package/luci-app-argon-config
+git clone https://github.com/hza81007155/luci-theme-argone package/luci-theme-argone
+git clone https://github.com/hza81007155/luci-app-argone-config.git package/luci-app-argone-config
 
 # istore
 git clone --depth=1 -b main https://github.com/linkease/nas-packages-luci package/nas-packages-luci
@@ -77,11 +77,3 @@ git clone --depth=1 -b main https://github.com/linkease/istore package/istore
 
 # openclash
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/luci-app-openclash
-
-make clean
-rm -rf build_dir/target-*
-rm -rf build_dir/host-*
-rm -rf tmp
-./scripts/feeds clean
-./scripts/feeds update -a
-./scripts/feeds install -a
